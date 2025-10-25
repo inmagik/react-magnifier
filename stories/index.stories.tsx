@@ -31,7 +31,3 @@ export const DifferentImages = () =>
 
 export const Base64Image = () => React.createElement(Magnifier, { src: BASE_64_IMG, width: IMG_WIDTH });
 
-
-
-
-
