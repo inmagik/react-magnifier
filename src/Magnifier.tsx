@@ -42,9 +42,9 @@ interface State {
 }
 
 export default class Magnifier extends PureComponent<Props, State> {
-	img: HTMLElement;
+	img!: HTMLElement;
 
-	imgBounds: DOMRect | ClientRect;
+	imgBounds!: DOMRect | ClientRect;
 
 	calcImgBoundsDebounced: () => void;
 

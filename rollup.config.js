@@ -1,7 +1,7 @@
 import postcss from "rollup-plugin-postcss";
-import typescript from "rollup-plugin-typescript2";
+import typescript from "@rollup/plugin-typescript";
 
-import pkg from "./package.json";
+import pkg from "./package.json" with { type: "json" };
 
 export default {
 	input: "./src/Magnifier.tsx",
@@ -16,5 +16,10 @@ export default {
 		},
 	],
 	external: ["react", "lodash.debounce", "lodash.throttle"],
-	plugins: [postcss(), typescript()],
+	plugins: [
+		postcss(),
+		typescript({
+			tsconfig: "./tsconfig.json",
+		}),
+	],
 };
