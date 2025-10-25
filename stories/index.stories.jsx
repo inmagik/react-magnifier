@@ -1,4 +1,3 @@
-import { addDecorator, storiesOf } from "@storybook/react";
 import React from "react";
 
 import Magnifier from "../dist/Magnifier.es";
@@ -8,31 +7,45 @@ import testImage from "./test-image.jpg";
 
 const IMG_WIDTH = "50%";
 
-addDecorator(story => (
-	<div
-		style={{
-			display: "flex",
-			justifyContent: "center",
-			margin: "100px 0",
-		}}
-	>
-		{story()}
-	</div>
-));
+const CenterDecorator = (Story) => {
+	return (
+		<div
+			style={{
+				display: "flex",
+				justifyContent: "center",
+				margin: "100px 0",
+			}}
+		>
+			<Story />
+		</div>
+	);
+};
 
-storiesOf("Magnifier", module)
-	.add("Round", () => <Magnifier src={testImage} width={IMG_WIDTH} />)
-	.add("Square", () => <Magnifier src={testImage} mgShape="square" width={IMG_WIDTH} />)
-	.add("Hide overflow", () => (
-		<Magnifier
-			src={testImage}
-			mgShowOverflow={false}
-			mgTouchOffsetX={0}
-			mgTouchOffsetY={0}
-			width={IMG_WIDTH}
-		/>
-	))
-	.add("Different images", () => (
-		<Magnifier src={testImageSmall} zoomImgSrc={testImage} width={IMG_WIDTH} />
-	))
-	.add("Base64 image", () => <Magnifier src={BASE_64_IMG} width={IMG_WIDTH} />);
+export default {
+	title: "Magnifier",
+	component: Magnifier,
+	decorators: [CenterDecorator],
+};
+
+export const Round = () => <Magnifier src={testImage} width={IMG_WIDTH} />;
+
+export const Square = () => <Magnifier src={testImage} mgShape="square" width={IMG_WIDTH} />;
+
+export const HideOverflow = () => (
+	<Magnifier
+		src={testImage}
+		mgShowOverflow={false}
+		mgTouchOffsetX={0}
+		mgTouchOffsetY={0}
+		width={IMG_WIDTH}
+	/>
+);
+
+export const DifferentImages = () => (
+	<Magnifier src={testImageSmall} zoomImgSrc={testImage} width={IMG_WIDTH} />
+);
+
+export const Base64Image = () => <Magnifier src={BASE_64_IMG} width={IMG_WIDTH} />;
+
+
+
